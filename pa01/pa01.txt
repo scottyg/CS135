@@ -1,0 +1,84 @@
+a1012215528:x:6392:6392:Scott Michael Gordon:/home/a1012215528:/bin/bash
+Mon 24 Jan 2022 05:27:37 PM PST
+         1         2         3         4         5         6         7         8
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+Singed off by Chris Catechis
+
+Problem Statement
+1. Design an algorithm to convert the change given in quarters, dimes, nickels,
+   and pennies into pennies
+2. Design an algorithm to convert the change given in pennies into quarters, 
+   dimes, nickels, and pennies
+3. Design an algorithm that takes two input values, hours and rate. It then 
+   calculates pay_gross, which is your pay before deductions. The algorithm 
+   then calculates the following three deduction amounts: 
+   Federal tax (tax_fed, 20% of pay_gross); 
+   State tax (tax_state, 5% of pay_gross); 
+   and Social Security tax (tax_ss, 6.2% of pay_gross). 
+   Your net pay, pay_net, is then computed, which is pay_gross minus the three 
+   deductions.
+4. Laurel and Hardy opened a new landscape maintenance service. They provide 
+   three services:
+     a. mowing ($35 per 5000 square yards)
+     b. fertilizing ($30 per application)
+     c. planting trees ($50 per tree)
+   Design an algorithm that prompts the user to enter the length and width of 
+   the lawn (in feet), the number of fertilizing applications, and the number 
+   of trees to be planted. The algorithm then determines the billing amount. 
+   All three services are ordered.
+5. Design an algorithm that determines the smallest, middle, and largest values 
+   of three unduplicated input values.
+
+Input
+1. quarters, dimes, nickels, pennies
+2. pennies
+3. hours, rate
+4. length, width, num_fertilizer, num_trees
+5. num1, num2, num3
+
+Process
+1.
+  a. Multiply quarters by 25 
+  b. Add quarters to total
+  c. Multiply dimes by 10
+  d. Add dimes to total
+  e. Multiply nickels by 5
+  f. Add dimes to total
+  g. Add pennies to total
+2.
+  a. Divide total by 25 and add to quarters
+  b. Subtract quarter amount in pennies from total
+  c. Divide total by 10 and add to dimes
+  d. Subtract dime amount in pennies from total
+  e. Divide total by 5 and add to nickels
+  f. Subtract nickel amount from total
+3.
+  a. Multiply hours by rate and add to pay_gross
+  b. Multiply pay_gross by 0.20 and add to tax_fed
+  c. Multiply pay_gross by 0.05 and add to tax_state
+  d. Multiply pay_gross by 0.062 and add to tax_ss 
+  e. Subtract tax_fed, tax_state, and tax_ss from pay_gross and add to pay_net
+4.
+  a. Divide length by 3
+  b. Divide width by 3
+  c. Calculate area of lawn and divide by 5000 (length * width) / 5000
+  d. Multiply area by 35 and add to billing_amount
+  e. Multiply num_fertilizer by 30 and add to billing_amount
+  f. Multiply trees by 50 and add to billing_amount
+5.
+  a. If num1 > num2 and num1 > num3, then num1 is largest
+    i. If num2 > num3, then num2 is middle and num3 is smallest
+    ii. Else num3 is middle and num2 is smallest
+  b. Else if num2 > num1 and num2 > num3, then num2 is largest
+    i. If num1 > than num3, then num1 is middle and num3 is smallest
+    ii. Else num3 is middle and num1 is smallest
+  c. Else num3 is largest
+    i. If num1 > num2, then num1 is middle and num2 is smallest
+    ii. Else num2 is middle and num1 is smallest
+
+Output
+1. Print total in pennies to output device
+2. Print quarters, dimes, nickels, and pennies to output device
+3. Print pay_gross, tax_fed, tax_state, tax_ss, and pay_net to output device
+4. Print billing_amount to output device
+5. Print smallest, middle, and largest

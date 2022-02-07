@@ -1,0 +1,26 @@
+a1012215528:x:6392:6392:Scott Michael Gordon:/home/a1012215528:/bin/bash
+Mon 24 Jan 2022 03:54:44 PM PST
+         1         2         3         4         5         6         7         8
+12345678901234567890123456789012345678901234567890123456789012345678901234567890
+
+Problem Statement
+
+Given the diameter (in centimeters), and price of a pizza (in dollars), 
+design an algorithm to find the price of the pizza per square inch. 
+Assume one inch = 2.54 centimeters, and π is 3.14159.
+
+Input
+
+1. Get Diameter (cm) from input device (d)
+2. Get Price (dollars) form input device (p)
+
+Process
+
+3. Convert diameter from cm to inches (d = d / 2.54)
+4. Calculate radius from diameter (r = d / 2)
+5. Calculate area from radius (a = pi * r^2)
+6. Calculate costPerSquareInch (c = p / a)
+
+Output
+
+7. Print cost per square inch of pizza dollars to output device
