@@ -22,7 +22,7 @@ int main() {
     // variable declarations
     int num1;               // Number 1
     int num2;               // Number 2
-    int new_num;            // Numbers added together and eventually add SECRET
+    int new_num;            // Numbers added together and add SECRET
     string name;            // Users last name
     double hours_worked;    // Not Used
     double wages;           // Not Used
@@ -60,3 +60,4 @@ int main() {
     // return statement
     return 0;
 }
+
