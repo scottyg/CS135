@@ -3,7 +3,7 @@
 /// @date 2-7-22
 /// @note I pledge my word of honor that I have complied with the
 /// CSN Academic Integrity Policy while completing this assignment.
-/// @brief Ask for days, hours, minutes and seconds. Convert to seconds.
+/// @brief Ask for num1, num2, and name. Add numbers, add SECRET number
 /// Print output to screen.
 /// @note 15 minutes were taken to develop, write, test and debug solution.
 
