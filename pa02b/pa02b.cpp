@@ -18,9 +18,9 @@ using namespace std;
 
 int main() {
     // constant definitions
-    const int SECONDS_TO_MINUTES = 60;
-    const int MINUTES_TO_HOURS = 60;
-    const int HOURS_TO_DAYS = 24;
+    const int SECONDS_TO_MINUTES = 60;  // Convert seconds to minutes
+    const int MINUTES_TO_HOURS = 60;    // Convert minutes to hours
+    const int HOURS_TO_DAYS = 24;       // Conver hours to days
 
     // variable declarations
     long seconds;       // Time in seconds
