@@ -36,7 +36,8 @@ int main() {
 
     // processing phase
     days = seconds / SECONDS_TO_MINUTES / MINUTES_TO_HOURS / HOURS_TO_DAYS;
-    seconds = seconds - (days * HOURS_TO_DAYS * MINUTES_TO_HOURS * SECONDS_TO_MINUTES);
+    seconds = seconds - (days * HOURS_TO_DAYS * MINUTES_TO_HOURS * 
+        SECONDS_TO_MINUTES);
     hours = seconds / SECONDS_TO_MINUTES / MINUTES_TO_HOURS;
     seconds = seconds - (hours * MINUTES_TO_HOURS * SECONDS_TO_MINUTES);
     hours = hours + tz_offset;
