@@ -3,9 +3,12 @@
 /// @date 2-7-22
 /// @note I pledge my word of honor that I have complied with the
 /// CSN Academic Integrity Policy while completing this assignment.
-/// @brief Ask for days, hours, minutes and seconds. Convert to seconds.
+/// @brief Ask for seconds and timezone offset. 
+/// Convert seconds to days, hours, minutes and seconds.
+/// Calculate timezone offset into hours
 /// Print output to screen.
-/// @note 30 minutes were taken to develop, write, test and debug solution.
+/// @note 1 hour was taken to develop, write, test and debug solution.
+/// @see https://earthsky.org/astronomy-essentials/universal-time/
 
 // include statements
 #include <iostream>
