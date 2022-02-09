@@ -41,24 +41,19 @@ int main() {
     hours = seconds / SECONDS_TO_MINUTES / MINUTES_TO_HOURS;
     seconds = seconds - (hours * MINUTES_TO_HOURS * SECONDS_TO_MINUTES);
     hours = hours + tz_offset;
-    if(hours > 24){
+    if(hours > HOURS_TO_DAYS){
         days++;
-        hours = hours - 24;
+        hours = hours - HOURS_TO_DAYS;
     }
     minutes = seconds / SECONDS_TO_MINUTES;
     seconds = seconds - (minutes * SECONDS_TO_MINUTES);
 
     //output phase
-    cout << days
-         << "d "
-         << hours
-         << "h "
-         << minutes
-         << "m "
-         << seconds
-         << "s "
-         << endl;
-
+    cout << days << "d "
+         << hours << "h "
+         << minutes << "m "
+         << seconds << "s " << endl;
+         
     // return statement
     return 0;
 }
