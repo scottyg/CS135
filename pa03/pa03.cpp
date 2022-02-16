@@ -4,9 +4,9 @@
 /// @note I pledge my word of honor that I have complied with the
 /// CSN Academic Integrity Policy while completing this assignment.
 /// @brief Input data file. 
-/// Calculate sellers_cost and agent commission.
+/// Calculate sellers_cost and agent cmsn.
 /// Print output to screen.
-/// @note 652 -  minutes were taken to develop, write, test and debug solution.
+/// @note 2 hours were taken to develop, write, test and debug solution.
 
 // include statements
 #include <iostream>
@@ -18,61 +18,120 @@ using namespace std;
 
 int main() {
     // constant definitions
-    const double SELLERS_RATE = 0.06; // Sellers cost rate
-    const double AGENCY_RATE = 0.03; // Agency commission rate
-    const double AGENT_RATE = 0.015; // Agent commission rate
-
+    const double AGENCY_RATE = 0.03;                            // Agency Commission rate
+    const double AGENT_RATE = 0.015;                            // Agent Commission rate
+    const double SALES_COST = AGENCY_RATE + (AGENT_RATE * 2);   // Total sales cost
+    
     // variable declarations
     string report_title;        // Title of report
-    unsigned int report_total;           // Total number of report items
-
-    string homeowner_name_1;      // Homeowner Name #1
-    int sale_date_1;              // Date of sale #1
-    double sell_price_1;          // Cost of home #1
-    double sales_cost_1;          // Seller fees #1
-    double agency_commission_1;   // Agency Commission #1
-    double agent_commission_1;    // Agent Commission #1
-
-    string homeowner_name_2;      // Homeowner Name #2
-    int sale_date_2;              // Date of sale #2
-    double sell_price_2;          // Cost of home #2
-    double sales_cost_2;          // Seller fees #2
-    double agency_commission_2;   // Agency Commission #2
-    double agent_commission_2;    // Agent Commission #2
-
-    string homeowner_name_3;      // Homeowner Name #3
-    int sale_date_3;              // Date of sale #3
-    double sell_price_3;          // Cost of home #3
-    double sales_cost_3;          // Seller fees #3
-    double agency_commission_3;   // Agency Commission #3
-    double agent_commission_3;    // Agent Commission #3
+    unsigned int report_total;  // Total number of report items
+    // first item
+    string homeowner_name_1;    // Homeowner Name
+    int sale_date_1;            // Date of sale
+    double sell_price_1;        // Cost of home
+    double sales_cost_1;        // Seller fees
+    double agency_cmsn_1;       // Agency Commission
+    double agent_cmsn_1;        // Agent Commission
+    // second item
+    string homeowner_name_2;    // Homeowner Name
+    int sale_date_2;            // Date of sale
+    double sell_price_2;        // Cost of home
+    double sales_cost_2;        // Seller fees
+    double agency_cmsn_2;       // Agency Commission
+    double agent_cmsn_2;        // Agent Commission
+    // third item
+    string homeowner_name_3;    // Homeowner Name
+    int sale_date_3;            // Date of sale
+    double sell_price_3;        // Cost of home
+    double sales_cost_3;        // Seller fees
+    double agency_cmsn_3;       // Agency Commission
+    double agent_cmsn_3;        // Agent Commission
+    // totals
+    double sell_price_total;    // Combined sell price
+    double sales_cost_total;    // Combined sales cost
+    double agency_cmsn_total;   // Combined Agency Commission
+    double agent_cmsn_total;    // Combined Agent Commission
 
     // input phase
-    cin.ignore(2, ' ');
-    cin >> report_title;
+    // get report information
+    cin.ignore(2, ' '); // Ignore Leading '# '
+    getline(cin, report_title);
     cin >> report_total;
-    // Get first item
+    // get first item
     cin >> sale_date_1;
     cin >> sell_price_1;
+    cin.ignore(1, ' '); // Ignore Tab
     getline(cin, homeowner_name_1);
-
-    cout << homeowner_name_1;
+    // get second item
+    cin >> sale_date_2;
+    cin >> sell_price_2;
+    cin.ignore(1, ' '); // Ignore Tab
+    getline(cin, homeowner_name_2);
+    // Get third item
+    cin >> sale_date_3;
+    cin >> sell_price_3;
+    cin.ignore(1, ' '); // Ignore Tab
+    getline(cin, homeowner_name_3);
 
     // processing phase
-    // sellers_cost = sales_price * SELLERS_RATE;
-    // agent_commission = sales_price * AGENT_RATE;
+    // process first item
+    sales_cost_1 = sell_price_1 * SALES_COST;
+    agency_cmsn_1 = sell_price_1 * AGENCY_RATE;
+    agent_cmsn_1 = sell_price_1 * AGENT_RATE;
+    // process second item
+    sales_cost_2 = sell_price_2 * SALES_COST;
+    agency_cmsn_2 = sell_price_2 * AGENCY_RATE;
+    agent_cmsn_2 = sell_price_2 * AGENT_RATE;
+    // process third item
+    sales_cost_3 = sell_price_3 * SALES_COST;
+    agency_cmsn_3 = sell_price_3 * AGENCY_RATE;
+    agent_cmsn_3 = sell_price_3 * AGENT_RATE;
+    // process totals
+    sell_price_total = sell_price_1 + sell_price_2 + sell_price_3;
+    sales_cost_total = sales_cost_1 + sales_cost_2 + sale_date_3;
+    agency_cmsn_total = agency_cmsn_1 + agency_cmsn_2 + agency_cmsn_3;
+    agent_cmsn_total = agent_cmsn_1 + agent_cmsn_2 + agent_cmsn_3;
 
     // output phase
-    // cout << left << setw(20) << "Home Owner";
-    // cout << right << setw(20) << "Price of Home";
-    // cout << setw(20) << "Seller's Cost";
-    // cout << setw(20) << "Agent's Commission" << endl;
-    // cout << setw(80) << setfill('-') << "-" << endl; // 80 chars of -
-    // cout << left << setw(20) << setfill(' ') << homeowner_name;
-    // cout << fixed << setprecision(2); // Format following doubles
-    // cout << right << setw(20) << setfill('*') << sales_price;
-    // cout << setw(20) << sellers_cost;
-    // cout << setw(20) << agent_commission << endl;
+    cout << report_title << endl << endl;
+    cout << left << setw(6) << "Date";
+    cout << left << setw(24) << "Homeowner";
+    cout << right << setw(12) << "Sell Price";
+    cout << right << setw(12) << "Sales Cost";
+    cout << right << setw(12) << "Due Agency";
+    cout << right << setw(12) << "Due Agent" << endl;
+    // 80 chars of -
+    cout << setw(80) << setfill('-') << "-" << setfill(' ') << endl; 
+    // output first item
+    cout << right << setw(2) << setfill('0') << sale_date_1;
+    cout << left << setw(4) << setfill(' ') << ' ';
+    cout << left << setw(24) << homeowner_name_1;
+    cout << right << setw(12) << fixed << setprecision(2) << sell_price_1;
+    cout << right << setw(12) << sales_cost_1;
+    cout << right << setw(12) << agency_cmsn_1;
+    cout << right << setw(12) << agent_cmsn_1 << endl;
+    // output second item
+    cout << right << setw(2) << setfill('0') << sale_date_2;
+    cout << left << setw(4) << setfill(' ') << ' ';
+    cout << left << setw(24) << homeowner_name_2;
+    cout << right << setw(12) << fixed << setprecision(2) << sell_price_2;
+    cout << right << setw(12) << sales_cost_2;
+    cout << right << setw(12) << agency_cmsn_2;
+    cout << right << setw(12) << agent_cmsn_2 << endl;
+    // output first item
+    cout << right << setw(2) << setfill('0') << sale_date_3;
+    cout << left << setw(4) << setfill(' ') << ' ';
+    cout << left << setw(24) << homeowner_name_3;
+    cout << right << setw(12) << fixed << setprecision(2) << sell_price_3;
+    cout << right << setw(12) << sales_cost_3;
+    cout << right << setw(12) << agency_cmsn_3;
+    cout << right << setw(12) << agent_cmsn_3 << endl << endl;
+    // output totals
+    cout << right << setw(30) << setfill(' ') << "TOTALS: ";
+    cout << right << setw(12) << setfill('*') << sell_price_total;
+    cout << right << setw(12) << sales_cost_total;
+    cout << right << setw(12) << agency_cmsn_total;
+    cout << right << setw(12) << agent_cmsn_total << endl;
 
     // return statement
     return 0;
