@@ -19,13 +19,13 @@ using namespace std;
 int main() {
     // constant definitions
     const double SELLERS_RATE = 0.06; // Sellers cost rate
-    const double AGENT_RATE = 0.015; // Agent comission rate
+    const double AGENT_RATE = 0.015; // Agent commission rate
 
     // variable declarations
-    double sales_price;
-    double sellers_cost;
-    double agent_comission;
-    string homeowner_name;
+    double sales_price; // Sales Price of home
+    double sellers_cost; // Cost paid by seller
+    double agent_commission; // Commission earned by agent
+    string homeowner_name; // Homeowners last name
 
     // input phase
     cout << "Enter sales price of home and owner's last name: ";
@@ -34,7 +34,7 @@ int main() {
     
     // processing phase
     sellers_cost = sales_price * SELLERS_RATE;
-    agent_comission = sales_price * AGENT_RATE;
+    agent_commission = sales_price * AGENT_RATE;
 
     // output phase
     cout << left << setw(20) << "Home Owner";
@@ -46,7 +46,7 @@ int main() {
     cout << fixed << setprecision(2); // Format following doubles
     cout << right << setw(20) << setfill('*') << sales_price;
     cout << setw(20) << sellers_cost;
-    cout << setw(20) << agent_comission << endl;
+    cout << setw(20) << agent_commission << endl;
 
     // return statement
     return 0;
