@@ -101,7 +101,7 @@ int main() {
     cout << right << setw(12) << "Due Agency";
     cout << right << setw(12) << "Due Agent" << endl;
     // 80 chars of -
-    cout << setw(80) << setfill('-') << "-" << setfill(' ') << endl << endl; 
+    cout << setw(80) << setfill('-') << "-" << setfill(' '); 
     // output first item
     cout << right << setw(2) << setfill('0') << sale_date_1;
     cout << left << setw(4) << setfill(' ') << ' ';
