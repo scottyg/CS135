@@ -59,18 +59,18 @@ int main() {
     getline(cin, report_title);
     cin >> report_total;
     // get first item
-    cin >> sale_date_1;
-    cin >> sell_price_1;
+    cin >> sale_date_1
+        >> sell_price_1;
     cin.ignore(1, ' '); // Ignore Tab
     getline(cin, homeowner_name_1);
     // get second item
-    cin >> sale_date_2;
-    cin >> sell_price_2;
+    cin >> sale_date_2
+        >> sell_price_2;
     cin.ignore(1, ' '); // Ignore Tab
     getline(cin, homeowner_name_2);
     // Get third item
-    cin >> sale_date_3;
-    cin >> sell_price_3;
+    cin >> sale_date_3
+        >> sell_price_3;
     cin.ignore(1, ' '); // Ignore Tab
     getline(cin, homeowner_name_3);
 
