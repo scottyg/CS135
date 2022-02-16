@@ -88,7 +88,7 @@ int main() {
     agent_cmsn_3 = sell_price_3 * AGENT_RATE;
     // process totals
     sell_price_total = sell_price_1 + sell_price_2 + sell_price_3;
-    sales_cost_total = sales_cost_1 + sales_cost_2 + sale_date_3;
+    sales_cost_total = sales_cost_1 + sales_cost_2 + sales_cost_3;
     agency_cmsn_total = agency_cmsn_1 + agency_cmsn_2 + agency_cmsn_3;
     agent_cmsn_total = agent_cmsn_1 + agent_cmsn_2 + agent_cmsn_3;
 
