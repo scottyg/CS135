@@ -1,0 +1,137 @@
+# Makefile for 2022-spring-cs135-pa03-grading
+
+#  Uncomment to override shell environment defaults
+#~ CXX = /usr/bin/g++
+#~ CXXFLAGS = -std=c++14 -Wall -g -O2 -fno-caret-diagnostics
+
+PROJECT  = pa03
+DIR      =/home/shared/cs135/kmess/$(PROJECT)
+
+# File names
+EXEC     = $(PROJECT)
+SOURCES  = $(PROJECT).cpp
+HEADERS  =
+OBJECTS  = $(PROJECT).o
+UNITTEST = $(PROJECT)-test
+
+#~ NSHE     = $$(basename $$(pwd) | sed 's/^.*-a\?//')
+NSHE     = $$(whoami | sed 's/^a//')
+AUTHOR   = $$(grep $(NSHE) /etc/passwd | cut -d: -f5 | sed 's/,.*$$//')
+
+# cpplint filters
+FILTERS  = +,-build/header_guard,-build/include_alpha,-build/namespaces,-whitespace/indent,-whitespace/braces,-whitespace/end_of_line,-whitespace/ending_newline,-whitespace/blank_line,-readability/braces,-runtime/references,-runtime/explicit,-runtime/int
+
+# ANSI features
+BOLD     = \e[1m
+NORM     = \e[0m
+RED      = \e[0;91m
+GREEN    = \e[0;92m
+
+.PHONY: clean cloc cppcheck cpplint check grade help judge list pclint spec unittest .header
+
+check: .header cppcheck pclint cpplint cloc spec unittest judge
+
+# build executable
+$(EXEC): $(OBJECTS)
+	$(CXX) $(OBJECTS) -o $(EXEC) || :
+
+# build object files
+%.o: %.cpp
+	$(CXX) $(CXXFLAGS) -c $< -o $@ || :
+
+# build unit test
+#~ $(UNITTEST):
+#~ 	@cp -s /home/shared/catch.hpp . 2>/dev/null || :
+#~ 	@cp -s $(DIR)/$(UNITTEST).cxx . 2>/dev/null || :
+#~ 	@echo -ne 'Compiling unit tests. Please wait.\r'
+#~ 	@$(CXX) $(UNITTEST).cxx -o $(UNITTEST) $(CXXFLAGS) -O0 >/dev/null 2>&1 || :
+#~ 	@if [ ! -f $(UNITTEST) ]; then \
+#~ 		echo -e "$(RED)>>> 'Failed to compile unit tests.$(NORM)" ;\
+#~ 	fi
+#~ 	@echo
+
+clean:
+	rm -f $(OBJECTS) $(EXEC) *.log
+
+cloc:
+	@echo -e "$(BOLD)Counting lines of code:$(NORM)"
+	@cloc --quiet --by-file --unix --by-percent='cm' $(HEADERS) $(SOURCES) | sed 1,2d || :
+	@echo
+
+cppcheck:
+	@echo -e "$(BOLD)Running cppcheck:\n$(NORM)"
+	@cppcheck --quiet --language=c++ --std=c++14 \
+		--template='{file}:{line}: {severity}: {message}' \
+		--enable=warning,style,information \
+		--suppress=missingIncludeSystem \
+		$(SOURCES) 2>&1 || :
+	@echo
+
+cpplint:
+	@echo -e "$(BOLD)Running cpplint:$(NORM)\n"
+	@cpplint --quiet --filter=$(FILTERS) $(HEADERS) $(SOURCES) 2>&1 || :
+	@echo
+
+grade: check
+
+help:
+	@echo "Type 'make' followed by an option, e.g. 'make grade'"
+	@$(MAKE) -pRrq -f $(lastword $(MAKEFILE_LIST)) : 2>/dev/null | \
+		awk -v RS= -F: '/^# File/,/^# Finished Make data base/ { \
+			if ($$1 !~ "^[#.]") {print $$1}}' | \
+		sort | egrep -v -e '^[^[:alnum:]]' -e '^$@$$'
+	@echo
+
+judge: $(EXEC)
+	@echo -e "$(BOLD)Judging program output for correctness:$(NORM)"
+	@for i in {0..1}; do \
+		echo -e "\nTest Input $$i\t"; \
+		judge -p $(EXEC) -i $(DIR)/$(PROJECT)-input$$i.txt -o $(DIR)/$(PROJECT)-output$$i.txt -v || : ;\
+	done
+	@echo -e '\nDone.\n'
+
+list: help
+
+pclint:
+	@echo -e "$(BOLD)Running pclint:$(NORM)"
+	@pclint -b +cpp{h} -e891 -e894 -e921 -e534 -h1 -width{0} $(SOURCES) 2>&1 || :
+	@echo
+
+spec:
+	@echo -e "$(BOLD)Checking $$(tr [:lower] [:upper] <<< $(PROJECT))-specific requirement(s):$(NORM)\n"
+	@if [ ! -f $(PROJECT).cpp ]; then \
+		echo -e "$(RED)>>> Check filename. 'pa03.cpp' not found$(NORM)" ;\
+	fi
+	@if ! grep -q '^#include <iomanip>' $(PROJECT).cpp; then \
+		echo -e "$(RED)>>> Check include for <iomanip>$(NORM)" ;\
+	fi
+	@if ! grep -q '^#include <iostream>' $(PROJECT).cpp; then \
+		echo -e "$(RED)>>> Check include for <iostream>$(NORM)" ;\
+	fi
+	@if ! grep -q '^#include <string>' $(PROJECT).cpp; then \
+		echo -e "$(RED)>>> Check include for <string>$(NORM)" ;\
+	fi
+	@if ! grep -q '^    const ' $(PROJECT).cpp; then \
+		echo -e "$(RED)>>> Check 'const' declaration(s)$(NORM)" ;\
+	fi
+	@if ! grep -q '^    return ' $(PROJECT).cpp; then \
+		echo -e "$(RED)>>> Check 'return' statement$(NORM)" ;\
+	fi
+	@echo
+
+#~ unittest: $(UNITTEST)
+#~ 	@if [ -f $(UNITTEST) ]; then \
+#~ 		echo -e "$(BOLD)Running Unit Tests:$(NORM)" ;\
+#~ 		./$(UNITTEST) || : ;\
+#~ 	fi
+#~ 	@echo
+
+.header:
+	@echo -e "\n$(BOLD)Date:$(NORM)\t$$(date)"
+	@echo -e "$(BOLD)Author:$(NORM)\t$(AUTHOR)"
+	@echo -e "$(BOLD)NSHE:$(NORM)\t$(NSHE)"
+	@echo -e "$(BOLD)Assign:$(NORM)\t$(PROJECT)"
+#~ 	@echo -e "$(BOLD)Submit:$(NORM)\t$$(ls -l $(PROJECT).cpp | awk '{print $$6,$$7,$$8}')"
+	@echo
+
+#~ EOF

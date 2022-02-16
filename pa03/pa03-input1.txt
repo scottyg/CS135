@@ -1,0 +1,5 @@
+# December 2020 Sales (Final)
+3
+7	100000	Jane Eyre
+14	199999.99	Smith, John
+21	123456.78	Sandy Claws

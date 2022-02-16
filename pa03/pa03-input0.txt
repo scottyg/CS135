@@ -1,0 +1,5 @@
+# January 2021 Sales
+3
+5	200000	Stroustrup
+11	99999.99	Brian W. Kernighan
+28	1234567.89	Richie Rich
