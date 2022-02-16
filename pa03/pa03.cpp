@@ -94,6 +94,7 @@ int main() {
     agent_cmsn_total = agent_cmsn_1 + agent_cmsn_2 + agent_cmsn_3;
 
     // output phase
+    // output title and header
     cout << report_title << endl << endl;
     cout << left << setw(6) << "Date";
     cout << left << setw(24) << "Homeowner";
@@ -101,7 +102,6 @@ int main() {
     cout << right << setw(12) << "Sales Cost";
     cout << right << setw(12) << "Due Agency";
     cout << right << setw(12) << "Due Agent" << endl;
-    // 80 chars of -
     cout << setw(78) << setfill('-') << "-" << setfill(' ') << endl;
     // output first item
     cout << right << setw(2) << setfill('0') << sale_date_1;
