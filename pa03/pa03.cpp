@@ -18,11 +18,10 @@ using namespace std;
 
 int main() {
     // constant definitions
-    const double AGENCY_RATE =
-        0.03;                            // Agency Commission rate
-    const double AGENT_RATE =
-        0.015;                            // Agent Commission rate
-    const double SALES_COST = AGENCY_RATE + (AGENT_RATE * 2);   // Total sales cost
+    const double AGENCY_RATE = 0.03;    // Agency Commission rate
+    const double AGENT_RATE = 0.015;    // Agent Commission rate
+    const double SALES_COST = 
+        AGENCY_RATE + (AGENT_RATE * 2); // Total sales cost
 
     // variable declarations
     string report_title;        // Title of report
