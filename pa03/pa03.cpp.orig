@@ -3,7 +3,7 @@
 /// @date 2-16-22
 /// @note I pledge my word of honor that I have complied with the
 /// CSN Academic Integrity Policy while completing this assignment.
-/// @brief Input data file.
+/// @brief Input data file. 
 /// Calculate sellers_cost and agent cmsn.
 /// Print output to screen.
 /// @note 2 hours were taken to develop, write, test and debug solution.
@@ -18,12 +18,10 @@ using namespace std;
 
 int main() {
     // constant definitions
-    const double AGENCY_RATE =
-        0.03;                            // Agency Commission rate
-    const double AGENT_RATE =
-        0.015;                            // Agent Commission rate
+    const double AGENCY_RATE = 0.03;                            // Agency Commission rate
+    const double AGENT_RATE = 0.015;                            // Agent Commission rate
     const double SALES_COST = AGENCY_RATE + (AGENT_RATE * 2);   // Total sales cost
-
+    
     // variable declarations
     string report_title;        // Title of report
     unsigned int report_total;  // Total number of report items
@@ -103,7 +101,7 @@ int main() {
     cout << right << setw(12) << "Due Agency";
     cout << right << setw(12) << "Due Agent" << endl;
     // 80 chars of -
-    cout << setw(78) << setfill('-') << "-" << setfill(' ') << endl;
+    cout << setw(78) << setfill('-') << "-" << setfill(' ') << endl; 
     // output first item
     cout << right << setw(2) << setfill('0') << sale_date_1;
     cout << left << setw(4) << setfill(' ') << ' ';
