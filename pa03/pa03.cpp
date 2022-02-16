@@ -95,44 +95,44 @@ int main() {
 
     // output phase
     // output title and header
-    cout << report_title << endl << endl;
-    cout << left << setw(6) << "Date";
-    cout << setw(24) << "Homeowner";
-    cout << right << setw(12) << "Sell Price";
-    cout << setw(12) << "Sales Cost";
-    cout << setw(12) << "Due Agency";
-    cout << setw(12) << "Due Agent" << endl;
-    cout << setw(78) << setfill('-') << "-" << setfill(' ') << endl;
+    cout << report_title << endl << endl
+         << left << setw(6) << "Date"
+         << setw(24) << "Homeowner"
+         << right << setw(12) << "Sell Price"
+         << setw(12) << "Sales Cost"
+         << setw(12) << "Due Agency"
+         << setw(12) << "Due Agent" << endl
+         << setw(78) << setfill('-') << "-" << setfill(' ') << endl;
     // output first item
-    cout << right << setw(2) << setfill('0') << sale_date_1;
-    cout << left << setw(4) << setfill(' ') << ' ';
-    cout << setw(24) << homeowner_name_1;
-    cout << right << setw(12) << fixed << setprecision(2) << sell_price_1;
-    cout << setw(12) << sales_cost_1;
-    cout << setw(12) << agency_cmsn_1;
-    cout << setw(12) << agent_cmsn_1 << endl;
+    cout << right << setw(2) << setfill('0') << sale_date_1
+         << left << setw(4) << setfill(' ') << ' '
+         << setw(24) << homeowner_name_1
+         << right << setw(12) << fixed << setprecision(2) << sell_price_1
+         << setw(12) << sales_cost_1
+         << setw(12) << agency_cmsn_1
+         << setw(12) << agent_cmsn_1 << endl;
     // output second item
-    cout << setw(2) << setfill('0') << sale_date_2;
-    cout << left << setw(4) << setfill(' ') << ' ';
-    cout << setw(24) << homeowner_name_2;
-    cout << right << setw(12) << fixed << setprecision(2) << sell_price_2;
-    cout << setw(12) << sales_cost_2;
-    cout << setw(12) << agency_cmsn_2;
-    cout << setw(12) << agent_cmsn_2 << endl;
+    cout << setw(2) << setfill('0') << sale_date_2
+         << left << setw(4) << setfill(' ') << ' '
+         << setw(24) << homeowner_name_2
+         << right << setw(12) << sell_price_2
+         << setw(12) << sales_cost_2
+         << setw(12) << agency_cmsn_2
+         << setw(12) << agent_cmsn_2 << endl;
     // output first item
-    cout << setw(2) << setfill('0') << sale_date_3;
-    cout << left << setw(4) << setfill(' ') << ' ';
-    cout << setw(24) << homeowner_name_3;
-    cout << right << setw(12) << fixed << setprecision(2) << sell_price_3;
-    cout << setw(12) << sales_cost_3;
-    cout << setw(12) << agency_cmsn_3;
-    cout << setw(12) << agent_cmsn_3 << endl << endl;
+    cout << setw(2) << setfill('0') << sale_date_3
+         << left << setw(4) << setfill(' ') << ' '
+         << setw(24) << homeowner_name_3
+         << right << setw(12) << sell_price_3
+         << setw(12) << sales_cost_3
+         << setw(12) << agency_cmsn_3
+         << setw(12) << agent_cmsn_3 << endl << endl;
     // output totals
-    cout << setw(30) << "TOTALS: ";
-    cout << setw(12) << setfill('*') << sell_price_total;
-    cout << setw(12) << sales_cost_total;
-    cout << setw(12) << agency_cmsn_total;
-    cout << setw(12) << agent_cmsn_total << endl;
+    cout << setw(30) << "TOTALS: "
+         << setw(12) << setfill('*') << sell_price_total
+         << setw(12) << sales_cost_total
+         << setw(12) << agency_cmsn_total
+         << setw(12) << agent_cmsn_total << endl;
 
     // return statement
     return 0;
