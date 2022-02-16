@@ -30,7 +30,8 @@ int main() {
     // input phase
     cout << "Enter sales price of home and owner's last name: ";
     cin >> sales_price >> homeowner_name;
-
+    cout << endl;
+    
     // processing phase
     sellers_cost = sales_price * SELLERS_RATE;
     agent_comission = sales_price * AGENT_RATE;
