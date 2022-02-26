@@ -1,6 +1,6 @@
 /// @file pa04.cpp
 /// @author Scott Gordon
-/// @date 2-21-22
+/// @date 2-26-22
 /// @note I pledge my word of honor that I have complied with the
 /// CSN Academic Integrity Policy while completing this assignment.
 /// @brief
@@ -15,7 +15,7 @@ using namespace std;
 /// ---------------------------------------------------------------------------
 /// Main entry-point for this application.
 ///
-/// @returns Exit-code for the process - 0 for success
+/// @returns Exit-code for the process - 0 for success or 1 for failure
 /// ---------------------------------------------------------------------------
 
 int main() {
@@ -27,7 +27,7 @@ int main() {
     const int CET = 1;              // Central Europe Time
     const int EET = 2;              // Eastern Europe Time
     const int IST = 5;              // India Standard Time
-    const int IST_MINUTE = 30;  // India Standard Time
+    const int IST_MINUTE = 30;      // India Standard Time
     const int NST = -3;             // Newfoundland Standard Time
     const int NST_MINUTE = -30;     // Newfoundland Standard Time
     const int EST = -5;             // Eastern Standard Time
@@ -40,12 +40,13 @@ int main() {
     const int ACST = 9;             // Australian Central Standard Time
     const int ACST_MINUTE = 30;     // Australian Central Standard Time
     const int AWST = 8;             // Australian Western Standard Time
-    // Magic Numbers
-    const int SIXTY = 60;           // SIXTY
-    const int TWENTY_FOUR = 24;     // 24 hours
-    const int TWELVE = 12;          // 12 hours
+    // magic numbers
     const int ONE = 1;              // One
+    const int ELEVEN = 11;          // Eleven
+    const int TWELVE = 12;          // Twelve
     const int ZERO = 0;             // Zero
+    const int SIXTY = 60;           // Sixty
+    const int TWENTY_FOUR = 24;     // Twenty Four
 
     // local variable declaration(s)
     int exit_code;          // Exit Code
@@ -69,25 +70,32 @@ int main() {
     cin.get(ch);
 
     // check if number or string
-    if ((ch >= '0') && (ch <= '9')) {
-        cin.putback(ch);
-        cin >> hour;
-        cin.ignore();
-        cin >> minute;
-        cin >> ampm;
-    } else {
-        cin.putback(ch);
-        cin >> noon_midnight;
+    switch (ch) {
+        case 'n':
+        case 'm':
+            cin.putback(ch);
+            cin >> noon_midnight;
 
-        if (noon_midnight == "noon") {
-            hour = TWELVE;
-            minute = ZERO;
-            ampm = "p.m.";
-        } else if (noon_midnight == "midnight") {
-            hour = TWELVE;
-            minute = ZERO;
-            ampm = "a.m.";
-        }
+            if (noon_midnight == "noon") {
+                hour = TWELVE;
+                minute = ZERO;
+                ampm = "p.m.";
+            } else if (noon_midnight == "midnight") {
+                hour = TWELVE;
+                minute = ZERO;
+                ampm = "a.m.";
+            }
+
+            break;
+
+        default:
+            cin.putback(ch);
+            cin >> hour;
+            cin.ignore();
+            cin >> minute;
+            cin >> ampm;
+
+            break;
     }
 
     // read in time zones
@@ -152,7 +160,7 @@ int main() {
         offset_minute = ZERO;
     }
 
-    // calculate First offset
+    // calculate first offset
     hour = hour - offset_hour;
     minute = minute - offset_minute;
 
@@ -231,121 +239,17 @@ int main() {
     }
 
     // check am / pm
-    switch (hour) {
-        case 0:
-            ampm = "a.m.";
-            break;
-
-        case 1:
-            ampm = "a.m.";
-            break;
-
-        case 2:
-            ampm = "a.m.";
-            break;
-
-        case 3:
-            ampm = "a.m.";
-            break;
-
-        case 4:
-            ampm = "a.m.";
-            break;
-
-        case 5:
-            ampm = "a.m.";
-            break;
-
-        case 6:
-            ampm = "a.m.";
-            break;
-
-        case 7:
-            ampm = "a.m.";
-            break;
-
-        case 8:
-            ampm = "a.m.";
-            break;
-
-        case 9:
-            ampm = "a.m.";
-            break;
-
-        case 10:
-            ampm = "a.m.";
-            break;
-
-        case 11:
-            ampm = "a.m.";
-            break;
-
-        case 12:
-            ampm = "p.m.";
-            break;
-
-        case 13:
-            ampm = "p.m.";
-            break;
-
-        case 14:
-            ampm = "p.m.";
-            break;
-
-        case 15:
-            ampm = "p.m.";
-            break;
-
-        case 16:
-            ampm = "p.m.";
-            break;
-
-        case 17:
-            ampm = "p.m.";
-            break;
-
-        case 18:
-            ampm = "p.m.";
-            break;
-
-        case 19:
-            ampm = "p.m.";
-            break;
-
-        case 20:
-            ampm = "p.m.";
-            break;
-
-        case 21:
-            ampm = "p.m.";
-            break;
-
-        case 22:
-            ampm = "p.m.";
-            break;
-
-        case 23:
-            ampm = "p.m.";
-            break;
-
-        case 24:
-            ampm = "a.m.";
-            break;
-
-        default:
-            ampm = "p.m.";
-            break;
+    if ((hour >= ZERO && hour <= ELEVEN) || hour == TWENTY_FOUR) {
+        ampm = "a.m.";
+    } else {
+        ampm = "p.m.";
     }
 
     // convert back to 12 hour time
-    if (hour >= TWELVE && hour <= TWENTY_FOUR) {
-        hour = hour - TWELVE;
-    } else if (hour <= ZERO) {
+    if (hour <= ZERO) {
         hour = hour + TWELVE;
-    }
-
-    if (hour == ZERO) {
-        hour = TWELVE;
+    } else if (hour > TWELVE && hour <= TWENTY_FOUR) {
+        hour = hour - TWELVE;
     }
 
     // output phase
